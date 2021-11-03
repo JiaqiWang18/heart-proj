@@ -18,5 +18,7 @@ from django.urls import path
 from disease import views
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('diseases/', views.DiseaseList.as_view(), name='list-diseases'),
+    path('api/diseases/', views.DiseaseList.as_view(), name='api-list-diseases'),
+    path('', views.DiseaseListView.as_view(), name='list-diseases'),
+    path('disease/<int:pk>/', views.DiseaseDetailView.as_view(), name='disease-detail'),
 ]
