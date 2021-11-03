@@ -19,6 +19,7 @@ from disease import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/diseases/', views.DiseaseList.as_view(), name='api-list-diseases'),
+    path('api/tweets/<str:disease>/', views.TweetsList, name='api-list-tweets'),
     path('', views.DiseaseListView.as_view(), name='list-diseases'),
     path('disease/<int:pk>/', views.DiseaseDetailView.as_view(), name='disease-detail'),
 ]

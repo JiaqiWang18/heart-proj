@@ -2,10 +2,13 @@ from django.shortcuts import render
 from django.views.generic.list import ListView
 from django.views.generic import DetailView
 from rest_framework import generics
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
 from disease.models import Disease
 from disease.serializers import DiseaseSerializer
 from rest_framework.permissions import AllowAny
-
+import requests
+import os
 
 # Create your views here.
 class DiseaseListView(ListView):
@@ -32,3 +35,10 @@ class DiseaseList(generics.ListAPIView):
     queryset = Disease.objects.all().order_by('name')
     serializer_class = DiseaseSerializer
     permission_classes = [AllowAny]
+
+
+@api_view(['GET'])
+def TweetsList(request, disease):
+    headers = {"Authorization": f"Bearer {os.environ.get('TWITTERTOKEN')}"}
+    r = requests.get(f'https://api.twitter.com/1.1/search/tweets.json?q={disease}', headers=headers)
+    return Response(r.json())
