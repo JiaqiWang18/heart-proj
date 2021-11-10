@@ -1,10 +1,30 @@
 {% extends "disease/base.html" %}
 {% load static %}
 {% block content %}
-<div>
-    <h3>{{ disease.name }}</h3>
-    <p>{{ disease.description | safe | linebreaks}}</p>
-    <img src="{{ disease.ECG_image.url }}" class="img-fluid" alt="Responsive image">
-</div>
-
+<section>
+    <div class="container px-5 my-5">
+        <div class="row gx-5">
+            <div class="col-lg-9">
+                <article>
+                    <header class="mb-4">
+                        <h1 class="fw-bolder mb-1">{{ disease.name }}</h1>
+                        <div class="text-muted fst-italic mb-2"> Edited on <b>{{ disease.updated_at }}</b></div>
+                        <a class="badge bg-secondary text-decoration-none link-light" href="#!">Tag1</a>
+                        <a class="badge bg-secondary text-decoration-none link-light" href="#!">Tag2</a>
+                    </header>
+                    <section class="mb-5">
+                        <p>{{ disease.description | safe | linebreaks}}</p>
+                    </section>
+                </article>
+                <section>
+                    <div class="card bg-light">
+                        <div class="image">
+                            <img src="{{ disease.ECG_image.url }}" class="img-fluid" alt="Responsive image">
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock content %}
