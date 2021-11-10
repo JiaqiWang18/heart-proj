@@ -42,7 +42,7 @@ class DiseaseList(generics.ListAPIView):
 
 
 @api_view(['GET'])
-def TweetsList(request, disease):
+def tweets_list(request, disease):
     headers = {"Authorization": f"Bearer {os.environ.get('TWITTERTOKEN')}"}
-    r = requests.get(f'https://api.twitter.com/1.1/search/tweets.json?q={disease}', headers=headers)
+    r = requests.get(f'https://api.twitter.com/1.1/search/tweets.json?q={disease}-filter:retweets&lang=en&count=10', headers=headers)
     return Response(r.json())

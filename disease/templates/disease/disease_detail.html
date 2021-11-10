@@ -3,7 +3,7 @@
 {% block content %}
 <section>
     <div class="row gx-5">
-        <div class="col-lg-9">
+        <div class="col-lg-7">
             <article>
                 <header class="mb-4">
                     <h1 class="fw-bolder mb-1">{{ disease.name }}</h1>
@@ -24,6 +24,26 @@
                 </div>
             </section>
         </div>
+        <div class="col">
+            <h4 class="my-3">Relevant Tweets</h4>
+            <div id="twitter-posts"></div>
+        </div>
     </div>
 </section>
+<script>
+const twitterTemplate = ({text}) =>`
+<div class="card mb-2" style="width: 100%;">
+  <div class="card-body">
+    <p class="card-text">${text}</p>
+  </div>
+</div>
+`
+const tweetContainer = document.getElementById('twitter-posts');
+const q = "{{ disease.name }}"
+fetch(`/api/tweets/${q}/`)
+  .then(response => response.json())
+  .then(data => {
+      $('#twitter-posts').html(data.statuses.map(twitterTemplate).join(''))
+  })
+</script>
 {% endblock content %}

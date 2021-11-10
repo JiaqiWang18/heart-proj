@@ -20,7 +20,7 @@ from disease import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/diseases/', views.DiseaseList.as_view(), name='api-list-diseases'),
-    path('api/tweets/<str:disease>/', views.TweetsList, name='api-list-tweets'),
+    path('api/tweets/<str:disease>/', views.tweets_list, name='api-list-tweets'),
     path('', views.DiseaseListView.as_view(), name='home'),
     path('about/', TemplateView.as_view(template_name='disease/about.html'), name='about'),
     path('disease/<int:pk>/', views.DiseaseDetailView.as_view(), name='disease-detail'),
