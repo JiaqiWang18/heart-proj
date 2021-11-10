@@ -22,7 +22,6 @@ urlpatterns = [
     path('api/diseases/', views.DiseaseList.as_view(), name='api-list-diseases'),
     path('api/tweets/<str:disease>/', views.TweetsList, name='api-list-tweets'),
     path('', views.DiseaseListView.as_view(), name='home'),
-    path('view/', TemplateView.as_view(template_name='disease/HEART-post.html'), name='template'),
     path('about/', TemplateView.as_view(template_name='disease/about.html'), name='about'),
     path('disease/<int:pk>/', views.DiseaseDetailView.as_view(), name='disease-detail'),
 ]

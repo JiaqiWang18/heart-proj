@@ -9,8 +9,9 @@
                     <header class="mb-4">
                         <h1 class="fw-bolder mb-1">{{ disease.name }}</h1>
                         <div class="text-muted fst-italic mb-2"> Edited on <b>{{ disease.updated_at }}</b></div>
-                        <a class="badge bg-secondary text-decoration-none link-light" href="#!">Tag1</a>
-                        <a class="badge bg-secondary text-decoration-none link-light" href="#!">Tag2</a>
+                        {% for tag in disease.tags.all %}
+                            <a class="badge bg-secondary text-decoration-none link-light text-white" href="{% url 'home' %}?tag={{ tag.slug }}">{{ tag.name }}</a>
+                        {%  endfor %}
                     </header>
                     <section class="mb-5">
                         <p>{{ disease.description | safe | linebreaks}}</p>

@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.views.generic.list import ListView
 from django.views.generic import DetailView
 from rest_framework import generics
@@ -10,6 +9,7 @@ from rest_framework.permissions import AllowAny
 import requests
 import os
 
+
 # Create your views here.
 class DiseaseListView(ListView):
     template_name = 'disease/home.html'
@@ -18,6 +18,10 @@ class DiseaseListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        qs = Disease.objects.all()
+        tag = self.request.GET.get('tag')
+        if tag:
+            context['disease_list'] = qs.filter(tags__slug=tag)
         return context
 
 
