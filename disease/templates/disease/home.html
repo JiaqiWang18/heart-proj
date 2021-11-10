@@ -1,11 +1,9 @@
 {% extends "disease/base.html" %}
 {% block content %}
-    <h3>Home</h3>
     {% for disease in disease_list %}
         <div>
             <a href="{% url 'disease-detail' disease.id %}">{{ disease.name }}</a>
             <p>{{ disease.short_description }}</p>
         </div>
     {%  endfor %}
-
 {% endblock content %}
