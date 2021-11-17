@@ -24,7 +24,7 @@ class DiseaseListView(ListView):
         query = self.request.GET.get('search')
 
         if query:
-            result = Disease.objects.filter(name__contains=query)
+            result = Disease.objects.filter(name__icontains=query)
             self.search_value = query
         else:
             result = Disease.objects.all()

@@ -6,6 +6,12 @@
             Search Result for: {{ search_value }}
         </div>
     </div>
+    {% elif 'tag' in request.GET %}
+    <div class="container px-5 my-2">
+        <div class="h4 text-muted">
+            Disorders with tag: {{ request.GET.tag }}
+        </div>
+    </div>
     {%  else %}
     <header class="theme-color">
         <div class="px-5">
