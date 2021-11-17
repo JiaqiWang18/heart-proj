@@ -16,6 +16,7 @@
                     <p>{{ disease.description | safe | linebreaks}}</p>
                 </section>
             </article>
+        {% if disease.ECG_image %}
             <section>
                 <div class="card bg-light">
                     <div class="image">
@@ -23,6 +24,7 @@
                     </div>
                 </div>
             </section>
+        {% endif %}
         </div>
         <div class="col">
             <h4 class="my-3">Relevant Tweets</h4>

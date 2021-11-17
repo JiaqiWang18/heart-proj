@@ -36,7 +36,9 @@
             {% for disease in disease_list %}
                 <div class="col-lg-4 mb-5">
                     <div class="card shadow border-0">
+                    {% if disease.ECG_image %}
                         <img class="card-img-top img-fluid" src="{{ disease.ECG_image.url }}" alt="..."/>
+                    {% endif %}
                         <div class="card-body card-color">
                             <a class="text-decoration-none"
                                href="{% url 'disease-detail' disease.id %}"><h5
