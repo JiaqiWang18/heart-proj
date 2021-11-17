@@ -16,12 +16,27 @@ class DiseaseListView(ListView):
     model = Disease
     context_object_name = 'disease_list'
 
+    def __init__(self):
+        super().__init__()
+        self.search_value = ""
+
+    def get_queryset(self):
+        query = self.request.GET.get('search')
+
+        if query:
+            result = Disease.objects.filter(name__contains=query)
+            self.search_value = query
+        else:
+            result = Disease.objects.all()
+            self.search_value = ""
+        return result
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        qs = Disease.objects.all()
         tag = self.request.GET.get('tag')
         if tag:
-            context['disease_list'] = qs.filter(tags__slug=tag)
+            context['disease_list'] = self.get_queryset().filter(tags__slug=tag)
+        context['search_value'] = self.search_value
         return context
 
 

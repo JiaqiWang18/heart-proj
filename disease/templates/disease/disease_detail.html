@@ -1,7 +1,7 @@
 {% extends "disease/base.html" %}
 {% load static %}
 {% block content %}
-<section>
+<section class="container px-5 mt-3">
     <div class="row gx-5">
         <div class="col-lg-7">
             <article>
@@ -9,7 +9,7 @@
                     <h1 class="fw-bolder mb-1">{{ disease.name }}</h1>
                     <div class="text-muted fst-italic mb-2"> Edited on <b>{{ disease.updated_at }}</b></div>
                     {% for tag in disease.tags.all %}
-                        <a class="badge bg-secondary text-decoration-none link-light text-white" href="{% url 'home' %}?tag={{ tag.slug }}">{{ tag.name }}</a>
+                        <a class="badge bg-primary text-decoration-none link-light text-white rounded-pill" href="{% url 'home' %}?tag={{ tag.slug }}">{{ tag.name }}</a>
                     {%  endfor %}
                 </header>
                 <section class="mb-5">
